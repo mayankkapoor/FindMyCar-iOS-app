@@ -10,4 +10,17 @@
 
 @implementation AutoItem
 
+@synthesize title;
+@synthesize subtitle;
+@synthesize coordinate;
+
+- (id)initWithCoordinates:(CLLocationCoordinate2D)location autoName:(NSString *)name autoType:(NSString *)type {
+	if (self = [super init]) {
+		coordinate = location;
+		title = name;
+		subtitle = type;
+	}
+	return self;
+}
+
 @end

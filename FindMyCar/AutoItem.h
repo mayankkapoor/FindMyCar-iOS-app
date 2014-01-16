@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-@interface AutoItem : NSObject
+@interface AutoItem : NSObject <MKAnnotation>
 
-@property (nonatomic, copy) NSString *autoName;
-@property (nonatomic, copy) NSString *autoType;
-@property (nonatomic, assign) CLLocationCoordinate2D lastLocation;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *subtitle;
+@property (nonatomic, assign) CLLocationCoordinate2D coordinate;
+
+- (id)initWithCoordinates:(CLLocationCoordinate2D)location autoName:(NSString *)name autoType:(NSString *)type;
 
 @end

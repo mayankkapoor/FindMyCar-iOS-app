@@ -26,12 +26,12 @@
 	AutoItem *newCar;
 	
 	newCar = [[AutoItem alloc] init];
-	newCar.autoName = @"Nawal's Car";
-	newCar.autoType = @"Car";
+	newCar.title = @"Nawal's Car";
+	newCar.subtitle = @"Car";
 	CLLocationDegrees lat = 23.2599183;
 	CLLocationDegrees lon = 77.412594;
-	newCar.lastLocation = CLLocationCoordinate2DMake(lat, lon);
-//	NSLog(@"New Car added. Name: %@, lastLocation lat %f, lon %f", newCar.autoName, newCar.lastLocation.latitude, newCar.lastLocation.longitude);
+	newCar.coordinate = CLLocationCoordinate2DMake(lat, lon);
+	NSLog(@"New Car added. Name: %@, lastLocation lat %f, lon %f", newCar.title, newCar.coordinate.latitude, newCar.coordinate.longitude);
 	
 	[autos addObject:newCar];
 	
@@ -56,8 +56,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AutoTableViewItem"];
-//	UILabel *title = (UILabel *)[self.tableView viewWithTag:101];
-//	UILabel *subTitle = (UILabel *)[self.tableView viewWithTag:102];
 	
 	if (autos.count == 0) {
 		cell.textLabel.text = @"No autos";
@@ -65,8 +63,8 @@
 		cell.accessoryType = UITableViewCellAccessoryNone;
 	} else {
 		AutoItem *autoItem = [autos objectAtIndex:indexPath.row];
-		cell.textLabel.text = autoItem.autoName;
-		cell.detailTextLabel.text = autoItem.autoType;
+		cell.textLabel.text = autoItem.title;
+		cell.detailTextLabel.text = autoItem.subtitle;
 	}
 	return cell;
 }
@@ -81,6 +79,22 @@
 		return nil;
 	} else {
 		return indexPath;
+	}
+}
+
+#pragma mark MKMapViewDelegate Methods
+- (void)viewWillAppear:(BOOL)animated {
+	CLLocationCoordinate2D zoomLocation;
+	AutoItem *autoItem;
+	autoItem = [autos objectAtIndex:0];
+	zoomLocation.latitude = autoItem.coordinate.latitude;
+	zoomLocation.longitude = autoItem.coordinate.longitude;
+	
+	MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 10000, 10000);
+	[_mapView setRegion:viewRegion animated:YES];
+	
+	for (AutoItem *car in autos) {
+		[_mapView addAnnotation:car];
 	}
 }
 
