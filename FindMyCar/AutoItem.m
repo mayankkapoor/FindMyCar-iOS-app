@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Swati Gupta. All rights reserved.
 //
 
-#import "Auto.h"
+#import "AutoItem.h"
 
-@implementation Auto
+@implementation AutoItem
 
 @end

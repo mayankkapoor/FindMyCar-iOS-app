@@ -7,7 +7,7 @@
 //
 
 #import "FirstViewController.h"
-#import "Auto.h"
+#import "AutoItem.h"
 
 @interface FirstViewController ()
 
@@ -23,9 +23,9 @@
 	// Do any additional setup after loading the view, typically from a nib.
 	autos = [[NSMutableArray alloc] initWithCapacity:10];
 	
-	Auto *newCar;
+	AutoItem *newCar;
 	
-	newCar = [[Auto alloc] init];
+	newCar = [[AutoItem alloc] init];
 	newCar.autoName = @"Nawal's Car";
 	newCar.autoType = @"Car";
 	CLLocationDegrees lat = 23.2599183;
@@ -64,7 +64,7 @@
 		cell.detailTextLabel.text = @"Add some in Settings";
 		cell.accessoryType = UITableViewCellAccessoryNone;
 	} else {
-		Auto *autoItem = [autos objectAtIndex:indexPath.row];
+		AutoItem *autoItem = [autos objectAtIndex:indexPath.row];
 		cell.textLabel.text = autoItem.autoName;
 		cell.detailTextLabel.text = autoItem.autoType;
 	}

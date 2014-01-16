@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-@interface Auto : NSObject
+@interface AutoItem : NSObject
 
 @property (nonatomic, copy) NSString *autoName;
 @property (nonatomic, copy) NSString *autoType;
