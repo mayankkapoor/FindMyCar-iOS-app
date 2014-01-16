@@ -24,15 +24,16 @@
 	autos = [[NSMutableArray alloc] initWithCapacity:10];
 	
 	AutoItem *newCar;
+	CLLocationDegrees lat;
+	CLLocationDegrees lon;
 	
 	newCar = [[AutoItem alloc] init];
 	newCar.title = @"Nawal's Car";
 	newCar.subtitle = @"Car";
-	CLLocationDegrees lat = 23.2599183;
-	CLLocationDegrees lon = 77.412594;
+	lat = 23.2599183;
+	lon = 77.412594;
 	newCar.coordinate = CLLocationCoordinate2DMake(lat, lon);
 	NSLog(@"New Car added. Name: %@, lastLocation lat %f, lon %f", newCar.title, newCar.coordinate.latitude, newCar.coordinate.longitude);
-	
 	[autos addObject:newCar];
 	
 	[self.tableView reloadData];
